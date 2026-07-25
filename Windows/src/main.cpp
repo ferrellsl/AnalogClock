@@ -151,10 +151,10 @@ void init (void)
 
 	Sprite::enable2D();
 
-	clockFace = new Sprite("graphics/clockface.bmp");
-	hoursHand = new Sprite("graphics/hours_hand.bmp");
-	minutesHand = new Sprite("graphics/minutes_hand.bmp");
-	secondsHand = new Sprite("graphics/seconds_hand.bmp");
+	clockFace = new Sprite("clockface.bmp");
+	hoursHand = new Sprite("hours_hand.bmp");
+	minutesHand = new Sprite("minutes_hand.bmp");
+	secondsHand = new Sprite("seconds_hand.bmp");
 
 	// clear buffer and display image
 	reshape(windowWidth, windowHeight);
