@@ -2,7 +2,7 @@ CC=g++
 CFLAGS= -g -c -Wall
 EXECUTABLE = AnalogClock
 OUTDIR = Debug
-LDFLAGS = -lfreeglut -lglu32 -lopengl32
+LDFLAGS = -mwindows -lfreeglut -lglu32 -lopengl32
 
 SOURCES = main.cpp \
 		  Sprite.cpp ImageLoader.cpp
