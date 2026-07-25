@@ -1,12 +1,11 @@
 /*
- * main.c
+ * main.cpp
  *
  * Example of using the sprite class to create an Analog Clock.
  *
  *  Created on: 2010-12-26
  *      Author: Michael Yagudaev
  *      Copyright: yagudaev.com
- *      Version: $0.1.2$
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License Version 3 as
@@ -17,36 +16,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * ---------------------------------------------------------------------
- * FIX (100% CPU usage): the original code used glutIdleFunc(clockAnimation),
- * which causes GLUT to call clockAnimation() continuously, as fast as
- * possible, any time there are no other events to process. Even though
- * clockAnimation() only did real work once a second (gated by
- * TIME_INTERVAL), it was still being invoked in a tight busy-wait loop
- * hundreds of thousands of times a second, pegging a CPU core at 100%.
- *
- * Fix: replaced glutIdleFunc with glutTimerFunc, which lets the OS
- * sleep the process between ticks instead of spinning. clockAnimation()
- * now reschedules itself every 1000ms and always does its work when
- * called (no more manual interval check / lastRendered bookkeeping
- * needed, since the timer itself enforces the cadence).
- *
- * FIX (graphics don't resize with window): reshape() previously
- * recalculated glOrtho() bounds using the new window's pixel size every
- * time, which kept sprites drawn at a fixed pixel size -- resizing the
- * window just showed more/less canvas instead of scaling the clock.
- *
- * Fix: glOrtho() now always uses a FIXED logical coordinate space
- * (the original 524x524 window size). glViewport() maps that fixed
- * logical space onto the actual current window size, so everything
- * drawn is stretched/scaled to fill the window. To keep the round
- * clock face circular (not stretched into an oval) on non-square
- * resizes, the viewport is computed as the largest centered square
- * that fits the window, letterboxing any extra space.
  * ---------------------------------------------------------------------
  */
 
